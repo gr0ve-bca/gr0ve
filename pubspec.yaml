@@ -1,0 +1,39 @@
+name: gr0ve
+description: "Your All-in-One BCA App"
+publish_to: "none"
+version: 3.0.0+1
+
+environment:
+  sdk: ^3.10.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  shared_preferences: ^2.5.5
+  google_fonts: ^6.3.2
+  http: ^1.2.0
+
+  # Local packages
+  spr0ut:
+    path: ../spr0ut
+  f0rest:
+    path: ../f0rest
+  lucide_icons: ^0.257.0
+  lucide_icons_flutter: ^3.1.21
+  url_launcher: ^6.3.2
+  flutter_svg: ^2.3.0
+  hugeicons: ^1.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/display_names.json
+    - assets/schedules.json
+    - packages/spr0ut/data/display_names.json
