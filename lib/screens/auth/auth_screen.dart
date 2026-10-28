@@ -75,7 +75,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   void _onCodeChanged() {
     setState(() {});
-    if (_codeController.text.trim().length == 8 &&
+    if (_codeController.text.trim().length == 6 &&
         !_isLoading &&
         _viewState == AuthScreenState.enterCode) {
       _handleVerifyCode();
@@ -106,7 +106,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
     try {
       try {
-        await AuthService.instance.send8DigitEmailCode(email);
+        await AuthService.instance.send6DigitEmailCode(email);
       } catch (_) {
       }
 
@@ -130,8 +130,8 @@ class _AuthScreenState extends State<AuthScreen> {
     final email = _emailController.text.trim().toLowerCase();
     final code = _codeController.text.trim();
 
-    if (code.length != 8) {
-      setState(() => _errorMessage = 'Please enter the full 8-digit code.');
+    if (code.length != 6) {
+      setState(() => _errorMessage = 'Please enter the full 6-digit code.');
       return;
     }
 
@@ -141,7 +141,7 @@ class _AuthScreenState extends State<AuthScreen> {
     });
 
     try {
-      final identity = await AuthService.instance.verify8DigitCode(
+      final identity = await AuthService.instance.verify6DigitCode(
         email: email,
         code: code,
       );
@@ -391,7 +391,7 @@ class _AuthScreenState extends State<AuthScreen> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          'Enter the 8 digit code sent to $email',
+          'Enter the 6 digit code sent to $email',
           textAlign: TextAlign.center,
           style: GoogleFonts.inter(
             fontSize: 15,
@@ -400,7 +400,7 @@ class _AuthScreenState extends State<AuthScreen> {
           ),
         ),
         const SizedBox(height: 36),
-        _buildContinuous8BoxInput(p),
+        _buildContinuous6BoxInput(p),
         if (_errorMessage != null) ...[
           const SizedBox(height: 16),
           _buildErrorText(_errorMessage!),
@@ -453,14 +453,14 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  Widget _buildContinuous8BoxInput(Palette p) {
+  Widget _buildContinuous6BoxInput(Palette p) {
     return TextField(
       controller: _codeController,
       focusNode: _codeFocusNode,
       autofocus: true,
       keyboardType: TextInputType.number,
       textAlign: TextAlign.center,
-      maxLength: 8,
+      maxLength: 6,
       autofillHints: const [AutofillHints.oneTimeCode],
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       cursorColor: Gr0veColors.grover,
@@ -472,7 +472,7 @@ class _AuthScreenState extends State<AuthScreen> {
       ),
       decoration: InputDecoration(
         counterText: '',
-        hintText: '00000000',
+        hintText: '000000',
         hintStyle: GoogleFonts.jetBrainsMono(
           fontSize: 26,
           fontWeight: FontWeight.w700,

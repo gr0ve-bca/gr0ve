@@ -84,7 +84,7 @@ class _MiniLoginCardState extends State<MiniLoginCard> {
 
   void _onCodeChanged() {
     setState(() {});
-    if (_codeController.text.trim().length == 8 &&
+    if (_codeController.text.trim().length == 6 &&
         !_isLoading &&
         _state == MiniAuthState.enterCode) {
       _handleVerifyCode();
@@ -115,7 +115,7 @@ class _MiniLoginCardState extends State<MiniLoginCard> {
 
     try {
       try {
-        await AuthService.instance.send8DigitEmailCode(email);
+        await AuthService.instance.send6DigitEmailCode(email);
       } catch (_) {}
 
       setState(() {
@@ -137,8 +137,8 @@ class _MiniLoginCardState extends State<MiniLoginCard> {
     final email = _emailController.text.trim().toLowerCase();
     final code = _codeController.text.trim();
 
-    if (code.length != 8) {
-      setState(() => _errorMessage = 'Please enter the full 8-digit code.');
+    if (code.length != 6) {
+      setState(() => _errorMessage = 'Please enter the full 6-digit code.');
       return;
     }
 
@@ -148,7 +148,7 @@ class _MiniLoginCardState extends State<MiniLoginCard> {
     });
 
     try {
-      final identity = await AuthService.instance.verify8DigitCode(
+      final identity = await AuthService.instance.verify6DigitCode(
         email: email,
         code: code,
       );
@@ -395,7 +395,7 @@ class _MiniLoginCardState extends State<MiniLoginCard> {
         ),
         const SizedBox(height: 10),
         Text(
-          'Enter the 8 digit code sent to $email',
+          'Enter the 6 digit code sent to $email',
           textAlign: TextAlign.center,
           style: GoogleFonts.inter(
             fontSize: 14,
@@ -410,7 +410,7 @@ class _MiniLoginCardState extends State<MiniLoginCard> {
           autofocus: true,
           keyboardType: TextInputType.number,
           textAlign: TextAlign.center,
-          maxLength: 8,
+          maxLength: 6,
           autofillHints: const [AutofillHints.oneTimeCode],
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           cursorColor: p.ink,
@@ -422,7 +422,7 @@ class _MiniLoginCardState extends State<MiniLoginCard> {
           ),
           decoration: InputDecoration(
             counterText: '',
-            hintText: '00000000',
+            hintText: '000000',
             hintStyle: GoogleFonts.jetBrainsMono(
               fontSize: 24,
               fontWeight: FontWeight.w700,

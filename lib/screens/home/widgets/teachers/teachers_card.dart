@@ -35,7 +35,7 @@ class _TeachersCardState extends State<TeachersCard> {
   String _tq = '';
 
   int _rank(Absence a) {
-    final out = parseOutPeriods(a.status);
+    final out = parseOrdinalPeriods(a.status) ?? parseOutPeriods(a.status);
     final present = out != null && out.isEmpty;
     final starred = widget.stars.has(a.name);
     return (starred ? 0 : 2) + (present ? 1 : 0);

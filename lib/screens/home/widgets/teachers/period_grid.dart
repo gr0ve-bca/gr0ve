@@ -13,7 +13,12 @@ class PeriodGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const w = 5 * 26.0 + 4 * 4.0;
-    final out = parseOutPeriods(status);
+
+    // Period-specific text ("1st period only") wins; otherwise use the
+    // existing parser, where null means out all day and empty means present.
+    final Iterable<String>? out =
+        parseOrdinalPeriods(status) ?? parseOutPeriods(status);
+
     if (out == null) {
       return Container(
         width: w,
@@ -38,6 +43,7 @@ class PeriodGrid extends StatelessWidget {
         child: Text('Present', style: uiStyle(12, Colors.white)),
       );
     }
+
     Widget cell(String s) => Container(
       width: 26,
       height: 22,
@@ -54,6 +60,7 @@ class PeriodGrid extends StatelessWidget {
         ),
       ),
     );
+
     Widget row(List<String> r) => Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -63,6 +70,7 @@ class PeriodGrid extends StatelessWidget {
         ],
       ],
     );
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

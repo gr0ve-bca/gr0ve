@@ -39,11 +39,11 @@ class AuthService {
     _initialized = true;
   }
 
-  Future<void> send8DigitEmailCode(String email) async {
+  Future<void> send6DigitEmailCode(String email) async {
     await _backend.sendOtpCode(email);
   }
 
-  Future<Spr0utIdentity> verify8DigitCode({
+  Future<Spr0utIdentity> verify6DigitCode({
     required String email,
     required String code,
   }) async {

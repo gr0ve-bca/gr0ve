@@ -8,7 +8,6 @@ import 'package:spr0ut/spr0ut.dart';
 import '../../config/bus_stars.dart';
 import '../../config/home_prefs.dart';
 import '../../config/teacher_stars.dart';
-import '../../config/theme.dart';
 import '../../services/auth_service.dart';
 import '../../services/data_service.dart';
 import '../auth/auth_screen.dart';
@@ -31,6 +30,12 @@ import 'widgets/settings/mobile_settings_view.dart';
 import 'widgets/settings/settings_drawer.dart';
 import 'widgets/teachers/mobile_teachers_view.dart';
 import 'widgets/teachers/teachers_card.dart';
+
+/// Toggle the subtle Halloween decorations (corner spider webs + falling
+/// leaves). Set to `false` to disable without removing any code.
+/// To auto-restrict to October, replace the value with:
+/// `DateTime.now().month == DateTime.october`.
+const bool kHalloweenActive = true;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -381,7 +386,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           onRetry: _reload,
                                         )
                                       : MiniLoginCard(
-                                          key: const ValueKey('mini_login_card'),
+                                          key: const ValueKey(
+                                            'mini_login_card',
+                                          ),
                                           p: p,
                                           fill: true,
                                           mobile: false,
@@ -396,7 +403,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   duration: const Duration(milliseconds: 320),
                                   child: signedIn
                                       ? Column(
-                                          key: const ValueKey('signed_in_buses_calendar'),
+                                          key: const ValueKey(
+                                            'signed_in_buses_calendar',
+                                          ),
                                           crossAxisAlignment:
                                               CrossAxisAlignment.stretch,
                                           children: [
@@ -431,7 +440,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ],
                                         )
                                       : BusCard(
-                                          key: const ValueKey('signed_out_bus_full'),
+                                          key: const ValueKey(
+                                            'signed_out_bus_full',
+                                          ),
                                           p: p,
                                           busesFuture: _buses,
                                           stars: _stars,
@@ -446,7 +457,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               Expanded(
                                 flex: 7,
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
                                   children: [
                                     ScheduleCard(
                                       p: p,
@@ -499,67 +511,68 @@ class _HomeScreenState extends State<HomeScreen> {
                       key: ValueKey<int>(_mobileTab),
                       child: switch (_mobileTab) {
                         1 => MobileTeachersView(
-                            p: p,
-                            pad: pad,
-                            absencesFuture: _abs,
-                            stars: _tStars,
-                            onRetry: _reload,
-                          ),
+                          p: p,
+                          pad: pad,
+                          absencesFuture: _abs,
+                          stars: _tStars,
+                          onRetry: _reload,
+                        ),
                         2 => MobileBusesView(
-                            p: p,
-                            pad: pad,
-                            busesFuture: _buses,
-                            stars: _stars,
-                            onRetry: _reload,
-                          ),
+                          p: p,
+                          pad: pad,
+                          busesFuture: _buses,
+                          stars: _stars,
+                          onRetry: _reload,
+                        ),
                         3 => MobileEventsView(
-                            p: p,
-                            pad: pad,
-                            events: _events,
-                            month: _month,
-                            selectedDate: _sel,
-                            dots: _dotDays(_month),
-                            onSelectDate: (d) => setState(() => _sel = d),
-                            onShiftMonth: _shift,
-                          ),
+                          p: p,
+                          pad: pad,
+                          events: _events,
+                          month: _month,
+                          selectedDate: _sel,
+                          dots: _dotDays(_month),
+                          onSelectDate: (d) => setState(() => _sel = d),
+                          onShiftMonth: _shift,
+                        ),
                         4 => MobileLunchView(
-                            p: p,
-                            pad: pad,
-                            lunchFuture: _lunch,
-                            dayFuture: _day,
-                            lunchPeriod: userLunchPeriod(_user),
-                            onRetry: _reload,
-                          ),
+                          p: p,
+                          pad: pad,
+                          lunchFuture: _lunch,
+                          dayFuture: _day,
+                          lunchPeriod: userLunchPeriod(_user),
+                          onRetry: _reload,
+                        ),
                         5 => MobileSettingsView(
-                            p: p,
-                            pad: pad,
-                            user: user,
-                            name: first,
-                            prefs: _prefs,
-                            onSetAccent: _setAccent,
-                            onSetDark: _setDark,
-                            onReload: _reload,
-                            onSignOut: _signOut,
-                          ),
+                          p: p,
+                          pad: pad,
+                          user: user,
+                          name: first,
+                          prefs: _prefs,
+                          onSetAccent: _setAccent,
+                          onSetDark: _setDark,
+                          onReload: _reload,
+                          onSignOut: _signOut,
+                        ),
                         _ => MobileHomeView(
-                            p: p,
-                            firstName: first,
-                            short: short,
-                            pad: pad,
-                            slug: _slug,
-                            dark: _prefs.dark,
-                            dayFuture: _day,
-                            lunchPeriod: userLunchPeriod(_user),
-                            absencesFuture: _abs,
-                            tStars: _tStars,
-                            busesFuture: _buses,
-                            stars: _stars,
-                            events: _events,
-                            lunchFuture: _lunch,
-                            onSwitchToTab: (tab) => setState(() => _mobileTab = tab),
-                            onOpenSettings: () => setState(() => _mobileTab = 5),
-                            onRetry: _reload,
-                          ),
+                          p: p,
+                          firstName: first,
+                          short: short,
+                          pad: pad,
+                          slug: _slug,
+                          dark: _prefs.dark,
+                          dayFuture: _day,
+                          lunchPeriod: userLunchPeriod(_user),
+                          absencesFuture: _abs,
+                          tStars: _tStars,
+                          busesFuture: _buses,
+                          stars: _stars,
+                          events: _events,
+                          lunchFuture: _lunch,
+                          onSwitchToTab: (tab) =>
+                              setState(() => _mobileTab = tab),
+                          onOpenSettings: () => setState(() => _mobileTab = 5),
+                          onRetry: _reload,
+                        ),
                       },
                     ),
                   ),

@@ -85,9 +85,9 @@ const headerLogoHeight = 26.0;
 
 Color softColor(Palette p) => Color.lerp(p.surface, p.line, 0.4)!;
 
-Color edgeColor(Palette p, bool mobile) => mobile ? softColor(p) : p.line;
+Color edgeColor(Palette p, [bool mobile = true]) => softColor(p);
 
-double borderWidth(bool mobile) => mobile ? 1.0 : 1.5;
+double borderWidth([bool mobile = true]) => 1.0;
 
 String formatTwoDigits(int n) => n.toString().padLeft(2, '0');
 
@@ -142,6 +142,53 @@ Set<String>? parseOutPeriods(String status) {
   }
   if (s.contains('igs')) out.add('IGS');
   return out;
+}
+
+final _allDay = RegExp(r'all\s*day', caseSensitive: false);
+final _ordinal = RegExp(r'(\d{1,2})(?:st|nd|rd|th)\b');
+final _range = RegExp(
+  r'(\d{1,2})(?:st|nd|rd|th)?\s*(?:-|–|to|through)\s*(\d{1,2})(?:st|nd|rd|th)?',
+);
+final _periodList = RegExp(r'periods?\s*((?:\d{1,2}\s*(?:,|&|and)?\s*)+)');
+final _digits = RegExp(r'\d{1,2}');
+final _igs = RegExp(r'\bigs\b');
+
+/// Parses period-specific statuses such as "1st period only", "2nd period",
+/// "periods 3-5", or "3rd, 4th period".
+///
+/// Returns the matching slots in grid order, or null if the status isn't
+/// period-specific (so the caller should fall back to [parseOutPeriods]).
+/// Note: this null means "not handled", unlike [parseOutPeriods], where
+/// null means "out all day".
+List<String>? parseOrdinalPeriods(String status) {
+  final s = status.toLowerCase();
+  if (_allDay.hasMatch(s)) return null;
+  if (!s.contains('period') && !_ordinal.hasMatch(s)) return null;
+
+  final out = <String>{};
+
+  if (s.contains('period')) {
+    for (final m in _range.allMatches(s)) {
+      final a = int.parse(m[1]!);
+      final b = int.parse(m[2]!);
+      for (var i = a; i <= b && i <= 9; i++) {
+        out.add('$i');
+      }
+    }
+    for (final m in _periodList.allMatches(s)) {
+      for (final d in _digits.allMatches(m[1]!)) {
+        out.add(d[0]!);
+      }
+    }
+  }
+
+  for (final m in _ordinal.allMatches(s)) {
+    out.add(m[1]!);
+  }
+  if (_igs.hasMatch(s)) out.add('IGS');
+
+  final result = periodSlots.where(out.contains).toList();
+  return result.isEmpty ? null : result;
 }
 
 String foldString(String s) {

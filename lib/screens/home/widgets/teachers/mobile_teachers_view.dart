@@ -165,7 +165,7 @@ class _MobileTeachersViewState extends State<MobileTeachersView> {
     future: widget.absencesFuture,
     builder: (context, s) {
       int rank(Absence a) {
-        final out = parseOutPeriods(a.status);
+        final out = parseOrdinalPeriods(a.status) ?? parseOutPeriods(a.status);
         final present = out != null && out.isEmpty;
         return (widget.stars.has(a.name) ? 0 : 2) + (present ? 1 : 0);
       }
@@ -180,7 +180,7 @@ class _MobileTeachersViewState extends State<MobileTeachersView> {
               return false;
             }
             if (_pf == 'All') return true;
-            final out = parseOutPeriods(a.status);
+            final out = parseOrdinalPeriods(a.status) ?? parseOutPeriods(a.status);
             return out == null || out.contains(_pf);
           }).toList()..sort((a, b) {
             final r = rank(a) - rank(b);
@@ -224,9 +224,9 @@ class _MobileTeachersViewState extends State<MobileTeachersView> {
       index: i,
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
-        padding: const EdgeInsets.fromLTRB(14, 16, 18, 16),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
         decoration: BoxDecoration(
-          color: p.surface,
+          color: p.bg,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: softColor(p)),
         ),

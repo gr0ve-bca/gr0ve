@@ -23,15 +23,15 @@ class ChangelogItem {
     return ChangelogItem(
       icon: (j['icon'] ?? 'sparkles').toString(),
       title: (j['title'] ?? '').toString(),
-      description: (j['desciprtion'] ?? j['description'] ?? '').toString(),
+      description: (j['description'] ?? '').toString(),
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'icon': icon,
-        'title': title,
-        'desciprtion': description,
-      };
+    'icon': icon,
+    'title': title,
+    'description': description,
+  };
 
   IconData get iconData {
     switch (icon.toLowerCase()) {
@@ -136,17 +136,16 @@ class ChangelogRelease {
 
   static Future<ChangelogRelease> fetchLatest() async {
     try {
-      final res = await http.get(Uri.parse(changelogUrl)).timeout(
-            const Duration(seconds: 4),
-          );
+      final res = await http
+          .get(Uri.parse(changelogUrl))
+          .timeout(const Duration(seconds: 4));
       if (res.statusCode == 200) {
         final decoded = jsonDecode(res.body);
         if (decoded is Map<String, dynamic>) {
           return ChangelogRelease.fromJson(decoded);
         }
       }
-    } catch (_) {
-    }
+    } catch (_) {}
     return defaultRelease;
   }
 }
@@ -175,7 +174,9 @@ void showChangelogDialog(BuildContext context, Palette p) {
                     children: [
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 4),
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: p.tint,
                           borderRadius: BorderRadius.circular(8),
@@ -234,7 +235,8 @@ void showChangelogDialog(BuildContext context, Palette p) {
                     child: ListView.separated(
                       padding: EdgeInsets.zero,
                       itemCount: release.updates.length,
-                      separatorBuilder: (_, index) => const SizedBox(height: 12),
+                      separatorBuilder: (_, index) =>
+                          const SizedBox(height: 12),
                       itemBuilder: (context, i) {
                         final update = release.updates[i];
                         return Container(

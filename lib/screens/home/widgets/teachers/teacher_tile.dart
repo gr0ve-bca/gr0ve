@@ -28,9 +28,16 @@ class TeacherTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final title = absence.matched
-        ? '${absence.prefix}. ${absence.name.split(',').first}'
-        : absence.name;
+    String title;
+    if (absence.matched) {
+      final lastName = absence.name.split(',').first.trim();
+      final prefix = absence.prefix.trim();
+      title = prefix.toLowerCase() == 'lao shi'
+          ? '$lastName $prefix'
+          : '$prefix. $lastName';
+    } else {
+      title = absence.name;
+    }
     final star = StarButton(
       on: isStarred,
       idle: p.sub,
