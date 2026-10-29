@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gr0ve/config/home_prefs.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:spr0ut/spr0ut.dart';
-import '../../../config/theme.dart';
 
 const daysList = [
   'Monday',
