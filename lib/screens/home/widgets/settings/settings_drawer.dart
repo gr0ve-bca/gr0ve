@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spr0ut/spr0ut.dart';
 import '../../../../config/home_prefs.dart';
-import 'package:gr0ve/config/home_prefs.dart';
 import '../animations/motion_utils.dart';
 import 'settings_content.dart';
 

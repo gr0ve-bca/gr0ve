@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gr0ve/config/home_prefs.dart';
 import '../../../config/bus_stars.dart';
 import '../../../config/teacher_stars.dart';
-import '../../../config/theme.dart';
 import '../models/home_day.dart';
 import '../utils/home_helpers.dart';
 import 'buses/mobile_starred_buses.dart';
