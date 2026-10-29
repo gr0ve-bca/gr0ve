@@ -1,5 +1,6 @@
 import 'package:f0rest/f0rest.dart';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:gr0ve/config/home_prefs.dart';
@@ -80,7 +81,11 @@ class EventDetailsDialog extends StatelessWidget {
               const SizedBox(height: 12),
               Row(
                 children: [
-                  Icon(LucideIcons.clock, size: 16, color: p.ink),
+                  HugeIcon(
+                    icon: HugeIcons.strokeRoundedClock01,
+                    size: 16,
+                    color: p.ink,
+                  ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 import '../../config/home_prefs.dart';
 
@@ -33,40 +33,40 @@ class ChangelogItem {
     'description': description,
   };
 
-  IconData get iconData {
+  List<List<dynamic>> get iconData {
     switch (icon.toLowerCase()) {
       case 'bus':
-        return LucideIcons.bus;
+        return HugeIcons.strokeRoundedBus01;
       case 'calendar':
       case 'event':
-        return LucideIcons.calendar;
+        return HugeIcons.strokeRoundedCalendar01;
       case 'user':
       case 'teacher':
-        return LucideIcons.user;
+        return HugeIcons.strokeRoundedUser;
       case 'utensils':
       case 'lunch':
       case 'food':
-        return LucideIcons.utensils;
+        return HugeIcons.strokeRoundedUtensils;
       case 'palette':
       case 'theme':
-        return LucideIcons.palette;
+        return HugeIcons.strokeRoundedPalette;
       case 'clock':
       case 'schedule':
-        return LucideIcons.clock;
+        return HugeIcons.strokeRoundedClock01;
       case 'game':
       case 'gamepad':
-        return LucideIcons.gamepad2;
+        return HugeIcons.strokeRoundedGamepad;
       case 'zap':
       case 'fast':
-        return LucideIcons.zap;
+        return HugeIcons.strokeRoundedZap;
       case 'shield':
       case 'lock':
-        return LucideIcons.shield;
+        return HugeIcons.strokeRoundedShield01;
       case 'smartphone':
       case 'mobile':
-        return LucideIcons.smartphone;
+        return HugeIcons.strokeRoundedSmartPhone01;
       default:
-        return LucideIcons.sparkles;
+        return HugeIcons.strokeRoundedSparkles;
     }
   }
 }
@@ -207,7 +207,11 @@ void showChangelogDialog(BuildContext context, Palette p) {
                       IconButton(
                         tooltip: 'Close',
                         onPressed: () => Navigator.of(context).pop(),
-                        icon: Icon(LucideIcons.x, size: 20, color: p.sub),
+                        icon: HugeIcon(
+                          icon: HugeIcons.strokeRoundedX,
+                          size: 16,
+                          color: p.sub,
+                        ),
                         style: IconButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -250,19 +254,19 @@ void showChangelogDialog(BuildContext context, Palette p) {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: 34,
-                                height: 34,
+                                width: 22,
+                                height: 22,
                                 decoration: BoxDecoration(
                                   color: p.tint,
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
-                                child: Icon(
-                                  update.iconData,
-                                  size: 18,
+                                child: HugeIcon(
+                                  icon: update.iconData,
+                                  size: 10,
                                   color: p.ink,
                                 ),
                               ),
-                              const SizedBox(width: 14),
+                              const SizedBox(width: 10),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,

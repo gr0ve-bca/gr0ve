@@ -1,6 +1,7 @@
 import 'package:f0rest/f0rest.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import '../../../../config/teacher_stars.dart';
 import 'package:gr0ve/config/home_prefs.dart';
@@ -101,7 +102,7 @@ class _TeachersCardState extends State<TeachersCard> {
         return panelCard(
           p,
           'Teachers out',
-          LucideIcons.userX,
+          HugeIcons.strokeRoundedUser,
           Column(
             mainAxisSize: widget.fill ? MainAxisSize.max : MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,

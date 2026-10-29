@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:spr0ut/spr0ut.dart';
 import '../../../../config/home_prefs.dart';
@@ -53,7 +54,11 @@ class SettingsContent extends StatelessWidget {
                 IconButton(
                   tooltip: 'Close',
                   onPressed: () => Navigator.of(context).pop(),
-                  icon: Icon(LucideIcons.x, size: 24, color: p.text),
+                  icon: HugeIcon(
+                    icon: HugeIcons.strokeRoundedX,
+                    size: 18,
+                    color: p.text,
+                  ),
                   style: IconButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -153,13 +158,18 @@ class SettingsContent extends StatelessWidget {
                 _btn(
                   p,
                   'Changelog',
-                  LucideIcons.fileText,
+                  HugeIcons.strokeRoundedFileText,
                   () => showChangelogDialog(context, p),
                 ),
                 const SizedBox(height: 12),
-                _btn(p, 'Refresh data', LucideIcons.refreshCw, onReload),
+                _btn(
+                  p,
+                  'Refresh data',
+                  HugeIcons.strokeRoundedRefreshCcw,
+                  onReload,
+                ),
                 const SizedBox(height: 12),
-                _btn(p, 'Sign out', LucideIcons.logOut, onSignOut),
+                _btn(p, 'Sign out', HugeIcons.strokeRoundedLogOut, onSignOut),
               ],
             ),
           ),
@@ -261,19 +271,19 @@ class SettingsContent extends StatelessWidget {
               children: [
                 _howRow(
                   p,
-                  LucideIcons.tablet,
+                  HugeIcons.strokeRoundedTable,
                   'iPhone / iPad (Safari)',
                   'Tap Share, then Add to Home Screen.',
                 ),
                 _howRow(
                   p,
-                  LucideIcons.smartphone,
+                  HugeIcons.strokeRoundedSmartPhone01,
                   'Android (Chrome)',
                   'Open the menu, then tap Install app.',
                 ),
                 _howRow(
                   p,
-                  LucideIcons.monitor,
+                  HugeIcons.strokeRoundedMonitor,
                   'Desktop (Chrome / Edge)',
                   'Click the install icon at the right of the address bar.',
                   last: true,
@@ -296,19 +306,19 @@ class SettingsContent extends StatelessWidget {
               children: [
                 _settingsRow(
                   p,
-                  LucideIcons.fileText,
+                  HugeIcons.strokeRoundedFileText,
                   'Changelog',
                   () => showChangelogDialog(context, p),
                 ),
                 _settingsRow(
                   p,
-                  LucideIcons.refreshCw,
+                  HugeIcons.strokeRoundedRefreshCw,
                   'Refresh data',
                   onReload,
                 ),
                 _settingsRow(
                   p,
-                  LucideIcons.logOut,
+                  HugeIcons.strokeRoundedLogOut,
                   'Sign out',
                   onSignOut,
                   danger: true,
@@ -354,7 +364,7 @@ class SettingsContent extends StatelessWidget {
 
   Widget _howRow(
     Palette p,
-    IconData icon,
+    List<List<dynamic>> icon,
     String title,
     String body, {
     bool last = false,
@@ -363,7 +373,7 @@ class SettingsContent extends StatelessWidget {
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, size: 18, color: p.sub),
+        HugeIcon(icon: icon, size: 14, color: p.sub),
         const SizedBox(width: 14),
         Expanded(
           child: Column(
@@ -381,7 +391,7 @@ class SettingsContent extends StatelessWidget {
 
   Widget _settingsRow(
     Palette p,
-    IconData icon,
+    List<List<dynamic>> icon,
     String label,
     VoidCallback f, {
     bool danger = false,
@@ -400,7 +410,7 @@ class SettingsContent extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 17),
             child: Row(
               children: [
-                Icon(icon, size: 20, color: danger ? c : p.sub),
+                HugeIcon(icon: icon, size: 16, color: danger ? c : p.sub),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Text(
@@ -413,9 +423,9 @@ class SettingsContent extends StatelessWidget {
                     duration: const Duration(milliseconds: 140),
                     curve: Curves.easeOut,
                     offset: h ? const Offset(0.3, 0) : Offset.zero,
-                    child: Icon(
-                      LucideIcons.chevronRight,
-                      size: 18,
+                    child: HugeIcon(
+                      icon: HugeIcons.strokeRoundedChevronRight,
+                      size: 14,
                       color: p.sub,
                     ),
                   ),
@@ -497,24 +507,26 @@ class SettingsContent extends StatelessWidget {
     ),
   );
 
-  Widget _btn(Palette p, String label, IconData icon, VoidCallback f) =>
-      OutlinedButton.icon(
-        onPressed: f,
-        icon: Icon(icon, size: 16),
-        label: Text(
-          label.toUpperCase(),
-          style: sansStyle(13, p.text, w: FontWeight.w700, ls: 0.5),
-        ),
-        style: OutlinedButton.styleFrom(
-          foregroundColor: p.text,
-          side: BorderSide(
-            color: edgeColor(p, !isDrawer),
-            width: borderWidth(!isDrawer),
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          minimumSize: const Size.fromHeight(52),
-        ).copyWith(overlayColor: WidgetStatePropertyAll(p.surface)),
-      );
+  Widget _btn(
+    Palette p,
+    String label,
+    List<List<dynamic>> icon,
+    VoidCallback f,
+  ) => OutlinedButton.icon(
+    onPressed: f,
+    icon: HugeIcon(icon: icon, size: 16),
+    label: Text(
+      label.toUpperCase(),
+      style: sansStyle(13, p.text, w: FontWeight.w700, ls: 0.5),
+    ),
+    style: OutlinedButton.styleFrom(
+      foregroundColor: p.text,
+      side: BorderSide(
+        color: edgeColor(p, !isDrawer),
+        width: borderWidth(!isDrawer),
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      minimumSize: const Size.fromHeight(52),
+    ).copyWith(overlayColor: WidgetStatePropertyAll(p.surface)),
+  );
 }

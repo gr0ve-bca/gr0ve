@@ -1,5 +1,6 @@
 import 'package:f0rest/f0rest.dart';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:gr0ve/config/home_prefs.dart';
 import '../../utils/home_typography.dart';
@@ -26,7 +27,7 @@ class MobileTodayEvents extends StatelessWidget {
     return panelCard(
       p,
       'Today',
-      LucideIcons.calendar,
+      HugeIcons.strokeRoundedCalendar01,
       ev.isEmpty
           ? Text('Nothing scheduled today.', style: sansStyle(14, p.sub))
           : Column(

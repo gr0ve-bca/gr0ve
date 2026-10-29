@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:spr0ut/spr0ut.dart';
 import '../../../../config/home_prefs.dart';
@@ -277,7 +278,7 @@ class _MiniLoginCardState extends State<MiniLoginCard> {
     return panelCard(
       p,
       'Sign In',
-      LucideIcons.logIn,
+      HugeIcons.strokeRoundedLogIn,
       SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: AnimatedSwitcher(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:gr0ve/config/home_prefs.dart';
 import '../../utils/home_helpers.dart';
@@ -67,7 +68,7 @@ class MonthGrid extends StatelessWidget {
           children: [
             _navBtn(
               p,
-              LucideIcons.chevronLeft,
+              HugeIcons.strokeRoundedChevronLeft,
               'Previous month',
               () => onShiftMonth(-1),
             ),
@@ -81,7 +82,7 @@ class MonthGrid extends StatelessWidget {
             ),
             _navBtn(
               p,
-              LucideIcons.chevronRight,
+              HugeIcons.strokeRoundedChevronRight,
               'Next month',
               () => onShiftMonth(1),
             ),
@@ -107,16 +108,18 @@ class MonthGrid extends StatelessWidget {
     );
   }
 
-  Widget _navBtn(Palette p, IconData icon, String tip, VoidCallback f) =>
-      IconButton(
-        tooltip: tip,
-        onPressed: f,
-        icon: Icon(icon, size: 20, color: p.text),
-        style: IconButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          hoverColor: p.line,
-        ),
-      );
+  Widget _navBtn(
+    Palette p,
+    List<List<dynamic>> icon,
+    String tip,
+    VoidCallback f,
+  ) => IconButton(
+    tooltip: tip,
+    onPressed: f,
+    icon: HugeIcon(icon: icon, size: 16, color: p.text),
+    style: IconButton.styleFrom(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      hoverColor: p.line,
+    ),
+  );
 }

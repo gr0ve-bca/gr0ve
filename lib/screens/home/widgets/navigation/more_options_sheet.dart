@@ -108,7 +108,7 @@ class MoreOptionsSheet extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
         child: Row(
           children: [
-            _tweenIcon(icon, 26, on ? p.accent : p.sub),
+            _tweenIcon(icon, 20, on ? p.accent : p.sub),
             const SizedBox(width: 20),
             Expanded(
               child: AnimatedDefaultTextStyle(
@@ -128,7 +128,7 @@ class MoreOptionsSheet extends StatelessWidget {
               offset: h ? const Offset(0.3, 0) : Offset.zero,
               child: _tweenIcon(
                 HugeIcons.strokeRoundedArrowRight01,
-                20,
+                16,
                 h ? p.accent : p.sub,
               ),
             ),

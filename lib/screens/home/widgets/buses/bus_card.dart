@@ -1,6 +1,7 @@
 import 'package:f0rest/f0rest.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import '../../../../config/bus_stars.dart';
 import 'package:gr0ve/config/home_prefs.dart';
@@ -101,7 +102,7 @@ class _BusCardState extends State<BusCard> {
         return panelCard(
           p,
           'Buses',
-          LucideIcons.bus,
+          HugeIcons.strokeRoundedBus01,
           Column(
             mainAxisSize: widget.fill ? MainAxisSize.max : MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,

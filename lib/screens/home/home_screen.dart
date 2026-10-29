@@ -31,12 +31,6 @@ import 'widgets/settings/settings_drawer.dart';
 import 'widgets/teachers/mobile_teachers_view.dart';
 import 'widgets/teachers/teachers_card.dart';
 
-/// Toggle the subtle Halloween decorations (corner spider webs + falling
-/// leaves). Set to `false` to disable without removing any code.
-/// To auto-restrict to October, replace the value with:
-/// `DateTime.now().month == DateTime.october`.
-const bool kHalloweenActive = true;
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -59,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<List<BusSpot>> _buses;
   late Future<List<LunchEntry>> _lunch;
 
-  late final Events _events;
+  late Events _events;
   final _dots = <String, Set<int>>{};
   late DateTime _month;
   late DateTime _sel;
@@ -81,12 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final n = DateTime.now();
     _sel = DateTime(n.year, n.month, n.day);
     _month = DateTime(n.year, n.month);
-    try {
-      _events = Events.bca();
-    } catch (e) {
-      if (kDebugMode) debugPrint('Events failed: $e');
-      _events = Events(const <Event>[]);
-    }
     _prefs.addListener(_onPrefs);
     _stars.addListener(_onPrefs);
     _stars.load();
@@ -95,11 +83,21 @@ class _HomeScreenState extends State<HomeScreen> {
     AuthService.instance.userNotifier.addListener(_onPrefs);
     _prefs.load(AuthService.instance.currentUser?.theme);
     unawaited(_syncThemeFromDb());
+    _loadEvents();
     _load();
     _poll = Timer.periodic(const Duration(seconds: 60), (_) {
       if (mounted) setState(_loadBuses);
     });
     unawaited(_boot());
+  }
+
+  Future<void> _loadEvents() async {
+    try {
+      final loaded = await Events.bca();
+      if (mounted) setState(() => _events = loaded);
+    } catch (e) {
+      if (kDebugMode) debugPrint('Events failed: $e');
+    }
   }
 
   @override

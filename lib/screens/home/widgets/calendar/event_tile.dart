@@ -1,5 +1,6 @@
 import 'package:f0rest/f0rest.dart';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:gr0ve/config/home_prefs.dart';
 import '../../utils/home_helpers.dart';
@@ -62,7 +63,11 @@ class EventTile extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(LucideIcons.chevronRight, size: 16, color: h ? p.ink : p.sub),
+            HugeIcon(
+              icon: HugeIcons.strokeRoundedChevronRight,
+              size: 16,
+              color: h ? p.ink : p.sub,
+            ),
           ],
         ),
         hl: h,

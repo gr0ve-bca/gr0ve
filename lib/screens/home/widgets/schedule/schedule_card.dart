@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:gr0ve/config/home_prefs.dart';
 import '../../models/home_day.dart';
@@ -27,7 +28,7 @@ class ScheduleCard extends StatelessWidget {
   Widget build(BuildContext context) => panelCard(
     p,
     'Schedule',
-    LucideIcons.clock,
+    HugeIcons.strokeRoundedClock01,
     FutureBuilder<HomeDay>(
       future: dayFuture,
       builder: (_, s) {

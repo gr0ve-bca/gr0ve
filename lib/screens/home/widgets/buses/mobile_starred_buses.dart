@@ -1,5 +1,6 @@
 import 'package:f0rest/f0rest.dart';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import '../../../../config/bus_stars.dart';
 import 'package:gr0ve/config/home_prefs.dart';
@@ -37,7 +38,7 @@ class MobileStarredBuses extends StatelessWidget {
         return panelCard(
           p,
           'Starred buses',
-          LucideIcons.star,
+          HugeIcons.strokeRoundedStar,
           Text(
             'Star buses in the Buses tab to track arrival spots.',
             style: sansStyle(14, p.sub),
@@ -54,7 +55,7 @@ class MobileStarredBuses extends StatelessWidget {
       return panelCard(
         p,
         'Starred buses',
-        LucideIcons.star,
+        HugeIcons.strokeRoundedStar,
         s.hasData
             ? Column(
                 children: [

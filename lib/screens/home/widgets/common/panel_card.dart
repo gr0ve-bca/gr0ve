@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:gr0ve/config/home_prefs.dart';
 import '../../utils/home_helpers.dart';
 import '../../utils/home_typography.dart';
@@ -9,7 +9,7 @@ import '../animations/motion_utils.dart';
 Widget panelCard(
   Palette p,
   String title,
-  IconData icon,
+  List<List<dynamic>> icon,
   Widget body, {
   Widget? trailing,
   bool fill = false,
@@ -48,7 +48,7 @@ Widget panelCard(
 Widget panelBoxContainer(
   Palette p,
   String title,
-  IconData icon,
+  List<List<dynamic>> icon,
   Widget body, {
   Widget? trailing,
   bool fill = false,
@@ -79,13 +79,15 @@ Widget panelBoxContainer(
               children: [
                 if (!narrow) ...[
                   Container(
-                    width: 40,
-                    height: 40,
+                    width: 44,
+                    height: 44,
                     decoration: BoxDecoration(
                       color: p.tint,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(14),
                     ),
-                    child: Icon(icon, size: 22, color: p.ink),
+                    child: Center(
+                      child: HugeIcon(icon: icon, size: 24, color: p.ink),
+                    ),
                   ),
                   const SizedBox(width: 14),
                 ],
@@ -181,7 +183,18 @@ Widget searchField(
     decoration: InputDecoration(
       hintText: hint,
       hintStyle: sansStyle(14, p.sub),
-      prefixIcon: Icon(LucideIcons.search, size: 16, color: p.sub),
+      prefixIcon: Padding(
+        padding: const EdgeInsets.only(left: 14, right: 10),
+        child: HugeIcon(
+          icon: HugeIcons.strokeRoundedSearch01,
+          size: 16,
+          color: p.sub,
+        ),
+      ),
+      prefixIconConstraints: const BoxConstraints(
+        minWidth: 40,
+        minHeight: 20,
+      ),
       filled: true,
       fillColor: p.bg,
       isDense: true,
@@ -205,7 +218,18 @@ Widget softSearchField(Palette p, String hint, ValueChanged<String> onChanged) {
     decoration: InputDecoration(
       hintText: hint,
       hintStyle: sansStyle(14, p.sub),
-      prefixIcon: Icon(LucideIcons.search, size: 16, color: p.sub),
+      prefixIcon: Padding(
+        padding: const EdgeInsets.only(left: 14, right: 10),
+        child: HugeIcon(
+          icon: HugeIcons.strokeRoundedSearch01,
+          size: 16,
+          color: p.sub,
+        ),
+      ),
+      prefixIconConstraints: const BoxConstraints(
+        minWidth: 40,
+        minHeight: 20,
+      ),
       filled: true,
       fillColor: p.surface,
       isDense: true,

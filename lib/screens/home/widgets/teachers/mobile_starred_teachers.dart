@@ -1,6 +1,7 @@
 import 'package:f0rest/f0rest.dart';
 import 'package:flutter/material.dart';
 import 'package:gr0ve/config/home_prefs.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import '../../../../config/teacher_stars.dart';
 import '../../utils/home_typography.dart';
@@ -33,7 +34,7 @@ class MobileStarredTeachers extends StatelessWidget {
         return panelCard(
           p,
           'Starred teachers',
-          LucideIcons.star,
+          HugeIcons.strokeRoundedStar,
           Text(
             'Star teachers in the Teachers tab to view them here.',
             style: sansStyle(14, p.sub),
@@ -50,7 +51,7 @@ class MobileStarredTeachers extends StatelessWidget {
       return panelCard(
         p,
         'Starred teachers',
-        LucideIcons.star,
+        HugeIcons.strokeRoundedStar,
         s.hasData
             ? Column(
                 children: [

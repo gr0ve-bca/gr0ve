@@ -75,7 +75,7 @@ class FloatingNavBar extends StatelessWidget {
           scale: down ? 0.86 : (active ? 1.12 : 1.0),
           duration: Duration(milliseconds: down ? 90 : 200),
           curve: down ? Curves.easeOut : Curves.easeOutBack,
-          child: _tweenIcon(icon, 30, active ? p.ink : p.sub),
+          child: _tweenIcon(icon, 24, active ? p.ink : p.sub),
         ),
       ),
     ),

@@ -1,6 +1,7 @@
 import 'package:f0rest/f0rest.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import '../../../../config/teacher_stars.dart';
 import 'package:gr0ve/config/home_prefs.dart';
@@ -93,7 +94,11 @@ class _MobileTeachersViewState extends State<MobileTeachersView> {
             turns: _pfOpen ? 0.5 : 0,
             duration: const Duration(milliseconds: 220),
             curve: Curves.easeOutCubic,
-            child: Icon(LucideIcons.chevronDown, size: 18, color: p.sub),
+            child: HugeIcon(
+              icon: HugeIcons.strokeRoundedChevronDown,
+              size: 14,
+              color: p.sub,
+            ),
           ),
         ],
       ),
@@ -180,7 +185,8 @@ class _MobileTeachersViewState extends State<MobileTeachersView> {
               return false;
             }
             if (_pf == 'All') return true;
-            final out = parseOrdinalPeriods(a.status) ?? parseOutPeriods(a.status);
+            final out =
+                parseOrdinalPeriods(a.status) ?? parseOutPeriods(a.status);
             return out == null || out.contains(_pf);
           }).toList()..sort((a, b) {
             final r = rank(a) - rank(b);

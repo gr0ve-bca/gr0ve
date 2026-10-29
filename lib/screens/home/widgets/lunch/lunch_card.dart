@@ -1,6 +1,7 @@
 import 'package:f0rest/f0rest.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:gr0ve/config/home_prefs.dart';
 import '../../models/home_day.dart';
@@ -96,8 +97,8 @@ class LunchCard extends StatelessWidget {
                                   ),
                                   if (entry.food.nutrition != null &&
                                       entry.food.nutrition!.isNotEmpty)
-                                    Icon(
-                                      LucideIcons.info,
+                                    HugeIcon(
+                                      icon: HugeIcons.strokeRoundedInfo,
                                       size: 14,
                                       color: h ? p.ink : p.sub,
                                     ),
@@ -123,7 +124,7 @@ class LunchCard extends StatelessWidget {
         return panelCard(
           p,
           'Lunch',
-          LucideIcons.utensils,
+          HugeIcons.strokeRoundedUtensils,
           fill
               ? SingleChildScrollView(
                   padding: EdgeInsets.only(bottom: mobile ? mobileNavClear : 0),

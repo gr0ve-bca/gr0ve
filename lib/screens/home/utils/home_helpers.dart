@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gr0ve/config/home_prefs.dart';
+import 'package:hugeicons/hugeicons.dart';
+import 'package:hugeicons/styles/stroke_rounded.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:spr0ut/spr0ut.dart';
 
@@ -49,26 +51,30 @@ const periodSlots = ['1', 'IGS', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 final gridSpotRegex = RegExp(r'^[A-I]\d{1,2}$', caseSensitive: false);
 
-const quickLinksList = <(String, IconData, String)>[
-  ('Schoology', LucideIcons.bookOpen, 'https://bca.schoology.com/home'),
+const quickLinksList = <(String, List<List<dynamic>>, String)>[
+  (
+    'Schoology',
+    HugeIcons.strokeRoundedSchool,
+    'https://bca.schoology.com/home',
+  ),
   (
     'Powerschool',
-    LucideIcons.barChart2,
+    HugeIcons.strokeRoundedBarChart,
     'https://bcts.powerschool.com/public/',
   ),
   (
     'Cancellations',
-    LucideIcons.fileX,
+    HugeIcons.strokeRoundedUserBlock01,
     'https://docs.google.com/document/d/e/2PACX-1vRkhySmwAiTtY88tcshckpV4F0vRrULccaGrYl_Sf2ubWpyyXA4l8c-KAOuMzSwFe-qyAQhLqXzVsbA/pub',
   ),
   (
     'Buses',
-    LucideIcons.bus,
+    HugeIcons.strokeRoundedBus01,
     'https://docs.google.com/spreadsheets/d/1S5v7kTbSiqV8GottWVi5tzpqLdTrEgWEY4ND4zvyV3o/edit?gid=0#gid=0',
   ),
   (
     'Counselor',
-    LucideIcons.calendarCheck,
+    HugeIcons.strokeRoundedAppointment01,
     'https://outlook.office365.com/book/CounselorBookings@bergen.org/?ismsaljsauthenabled=true',
   ),
 ];

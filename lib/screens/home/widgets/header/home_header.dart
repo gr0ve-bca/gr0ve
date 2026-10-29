@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:gr0ve/config/home_prefs.dart';
@@ -70,7 +71,11 @@ class HomeHeader extends StatelessWidget {
               IconButton(
                 tooltip: 'Settings',
                 onPressed: onOpenSettings,
-                icon: Icon(LucideIcons.settings, size: 24, color: p.text),
+                icon: HugeIcon(
+                  icon: HugeIcons.strokeRoundedSettings01,
+                  size: 18,
+                  color: p.text,
+                ),
                 style: IconButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -125,7 +130,7 @@ class HomeHeader extends StatelessWidget {
                   message: label,
                   child: IconButton(
                     onPressed: () => launchUrl(Uri.parse(url)),
-                    icon: Icon(icon, size: 18, color: p.text),
+                    icon: HugeIcon(icon: icon, size: 22, color: p.text),
                     style: IconButton.styleFrom(
                       hoverColor: p.tint,
                       shape: RoundedRectangleBorder(
